@@ -1,0 +1,54 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // Flutter Gradle Plugin should be applied after the Android and Kotlin plugins
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.flutter_task_manager_app"
+    compileSdk = 34  // Replace flutter.compileSdkVersion with actual SDK version
+
+    // Specify the NDK version directly
+    ndkVersion = "25.1.8937393"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.flutter_task_manager_app"
+        minSdk = 21  // Replace flutter.minSdkVersion with actual minimum SDK version
+        targetSdk = 33  // Replace flutter.targetSdkVersion with actual target SDK version
+        versionCode = 1  // Replace flutter.versionCode with actual version code
+        versionName = "1.0"  // Replace flutter.versionName with actual version name
+    }
+
+    buildTypes {
+        release {
+            // Add a signing config for release builds if needed
+
+            minifyEnabled false // Set to true if you want code shrinking
+            shrinkResources false // Set to true if using code shrinking
+
+            signingConfig = signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+}
+
+dependencies {
+    // Ensure the correct desugaring library is specified under coreLibraryDesugaring
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.1.2" 
+}
+
+flutter {
+    source = "../.."
+}
